@@ -24,3 +24,12 @@ df1 <- mutate(df1, Date = dmy(Date))
 
 #Subset the date frame to select only 2007-02-01 to 2007-02-02
 Main_data <- filter(df1, Date == "2007-02-01"|Date == "2007-02-02")
+
+#create a Datetime column to indicate the date+time for better ordering
+Main_data <- mutate(Main_data, Datetime = ymd_hms(paste(Date, Time)))
+
+#transform the number to numeric
+Main_data <- mutate(Main_data, Global_active_power = as.numeric(as.character(Global_active_power)))
+Main_data <- mutate(Main_data, Sub_metering_1 = as.numeric(as.character(Sub_metering_1)))
+Main_data <- mutate(Main_data, Sub_metering_2 = as.numeric(as.character(Sub_metering_2)))
+Main_data <- mutate(Main_data, Sub_metering_3 = as.numeric(as.character(Sub_metering_3)))
